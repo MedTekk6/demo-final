@@ -1,8 +1,7 @@
 import { prisma } from "@/lib/prisma";
-import { Client } from "@prisma/client";  // <-- import du type
 
 export default async function AdminPage() {
-  const clients: Client[] = await prisma.client.findMany({
+  const clients = await prisma.client.findMany({
     orderBy: { createdAt: "desc" },
   });
   return (
@@ -13,7 +12,7 @@ export default async function AdminPage() {
           <tr><th>ID</th><th>Nom</th><th>Email</th><th>Adresse</th><th>Date</th></tr>
         </thead>
         <tbody>
-          {clients.map((c: Client) => (   // <-- type explicite
+          {clients.map((c) => (
             <tr key={c.id}>
               <td className="border p-2">{c.id}</td>
               <td>{c.prenom} {c.nom}</td>
