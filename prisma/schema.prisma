@@ -1,0 +1,18 @@
+// Fichier: prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"   // La ligne url = env("...") est à supprimer
+  // Attention: l'URL de connexion ne se déclare plus ici
+}
+
+model Client {
+  id               Int      @id @default(autoincrement())
+  nom              String
+  prenom           String
+  email            String   @unique
+  adresseLivraison String
+  createdAt        DateTime @default(now())
+}
